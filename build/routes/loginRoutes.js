@@ -17,3 +17,12 @@ router.post('/login', function (req, res) {
         res.send('Must provide valid details');
     }
 });
+router.get('/', function (req, res) {
+    // look at session to check if logged in
+    if (req.session && req.session.loggedIn) {
+        res.send("\n      <div>\n        <div>You are logged in</div>\n        <a href=\"/logout\">Logout</a>\n      </div>\n    ");
+    }
+    else {
+        res.send("\n      <div>\n        <div>You are not logged in</div>\n        <a href=\"/login\">Login</a>\n      </div>\n    ");
+    }
+});
