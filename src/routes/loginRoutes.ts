@@ -26,7 +26,8 @@ router.post('/login', (req: RequestWithBody, res: Response) => {
   const { email, password } = req.body
 
   if (email && password) {
-    res.send(email + password)
+    req.session = { loggedIn: true }
+    res.redirect('/')
   } else {
     res.send('Must provide valid details')
   }
