@@ -35,4 +35,39 @@ app.get('/', (req: Request, res: Response) => {
 **PROS**:
 - Addressing these type issues with TS can *force* us to write better code
 
+## A Closer Integration
+So for now, we've tried to use express as normally as we could and just added in the absolute bare minimum number of type annotations. So we were only making use of typescript to get some really basic checking and error catching inside of our app. We didn't do any special customization or anything like that. Next, we're going to try to figure out how we can really twist express and ts together to make them work together way more closely than they currently are. 
 
+Whenever we make use of ts, the main features of the language is classes and interfaces. How do we get express to work with classes? It's a spectrum. 
+
+On the easy end, we can essentially take all of our express code and refactor it all to live inside of a class. 
+```ts
+// for example:
+class Server {
+  app: express.Express = express()
+
+  constructor() {
+    this.app.use(bodyParser.urlencoded({ extended: true }))
+    this.app.use(cookieSession({ keys: ['someKey'] }))
+    this.app.use(router)
+  }
+
+  start(): void {
+    this.app.listen(3000, () => {
+      console.log('listening on port 3000')
+    })
+  }
+}
+
+new Server().start
+```
+
+But, did we gain anything here? Is this code objectively easier to understand? No. Is it easier to write? Probably not. So when talking about moving express code into a class, there's not really much of an immediate benefit. If you're going to go through this entire process of refactoring to work with ts using some class based approach, there has got to be a good outcome. You have to justify that effort, otherwise you're wasting time. 
+
+There's really got to be one or two possible outcomes of doing an integration. 
+1. Get better type safety (help ts do a better job of catching errors)
+2. Significantly enhace the developer experience
+
+On the other side of the spectrum, we could take our express code, throw it into classes, and then on top of that we could figure out some way to make use of some advanced features in ts. This is exactly what we're going to do. 
+
+Although we're throwing them into classes, we're using some ts features to enhance the dev experience. In other words, we want to figure out some way to use ts to make it way easier to write express code than what we've put together so far. 
