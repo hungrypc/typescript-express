@@ -76,3 +76,12 @@ Although we're throwing them into classes, we're using some ts features to enhan
 [experiment file](https://github.com/hungrypc/typescript-express/blob/master/src/experiments/metadata.ts)
 
 Metadata is like some secret info that doesn't really show up anywhere except through the use of 'reflect-metadata'. The info that we associate with this object is going to be a little object of its own. 
+
+Don't forget to turn these on:
+```js
+// tsconfig
+{
+  "experimentalDecorators": true,
+  "emitDecoratorMetadata": true,
+}
+```
