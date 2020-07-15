@@ -71,3 +71,8 @@ There's really got to be one or two possible outcomes of doing an integration.
 On the other side of the spectrum, we could take our express code, throw it into classes, and then on top of that we could figure out some way to make use of some advanced features in ts. This is exactly what we're going to do. 
 
 Although we're throwing them into classes, we're using some ts features to enhance the dev experience. In other words, we want to figure out some way to use ts to make it way easier to write express code than what we've put together so far. 
+
+## The Basics of Metadata
+[experiment file](https://github.com/hungrypc/typescript-express/blob/master/src/experiments/metadata.ts)
+
+Metadata is like some secret info that doesn't really show up anywhere except through the use of 'reflect-metadata'. The info that we associate with this object is going to be a little object of its own. 
