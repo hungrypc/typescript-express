@@ -1,49 +1,15 @@
-import { Router, Request, Response, NextFunction } from 'express'
+// NO LONGER USING THIS 
 
-interface RequestWithBody extends Request {
-  body: { [key: string]: string | undefined }
-}
 
-function requireAuth(req: Request, res: Response, next: NextFunction): void {
-  if (req.session && req.session.loggedIn) {
-    next()
-    return
-  } 
+// import { Router, Request, Response, NextFunction } from 'express'
 
-  res.status(403)
-  res.send('Not permitted')
-}
+// interface RequestWithBody extends Request {
+//   body: { [key: string]: string | undefined }
+// }
 
-const router = Router()
+// const router = Router()
 
-router.get('/', (req: Request, res: Response): void => {
-  // look at session to check if logged in
-  if (req.session && req.session.loggedIn) {
-    res.send(`
-      <div>
-        <div>You are logged in</div>
-        <a href="/logout">Logout</a>
-      </div>
-    `)
-  } else {
-    res.send(`
-      <div>
-        <div>You are not logged in</div>
-        <a href="/login">Login</a>
-      </div>
-    `)
-  }
-})
 
-router.get('/logout', (req: Request, res: Response): void => {
-  req.session = null
-  res.redirect('/')
-})
-
-router.get('/protected', requireAuth, (req: Request, res: Response): void => {
-  res.send('Welcome to protected route, logged in user')
-})
-
-export {
-  router
-}
+// export {
+//   router
+// }

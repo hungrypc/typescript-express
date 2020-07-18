@@ -32,4 +32,10 @@ class LoginController {
       res.send('Must provide valid details')
     }
   }
+
+  @get('/logout')
+  getLogout(req: Request, res: Response): void {
+    req.session = null
+    res.redirect('/')
+  }
 }
